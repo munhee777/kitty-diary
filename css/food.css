@@ -89,46 +89,50 @@
   font-weight: bold;
 }
 
-/* ─── 핫핑크 한국 맛집 지도 영역 ─── */
+/* ─── 핫핑크 한국 맛집 지도 영역 (비율 고정 반응형) ─── */
 .map-section-card {
   background-color: #ffffff;
   border-radius: 24px;
-  padding: 22px;
+  padding: 20px 16px;
   border: 2px solid #ffd0df;
   box-shadow: 0 6px 16px rgba(255, 105, 180, 0.1);
   margin-top: 15px;
+  box-sizing: border-box;
+  width: 100%;
 }
 
 .map-section-card h2 {
-  font-size: 1.5rem;
+  font-size: 1.45rem;
   color: #ff007f;
   text-align: center;
-  margin-bottom: 6px;
+  margin-bottom: 4px;
 }
 
 .map-subtitle {
   text-align: center;
   color: #a86b7c;
-  font-size: 1.1rem;
-  margin-bottom: 20px;
+  font-size: 1.05rem;
+  margin-bottom: 16px;
 }
 
+/* 지도 컨테이너: 종횡비(가로 3: 세로 4 비율)를 완벽하게 유지하도록 설정 */
 .korea-map-wrapper {
   position: relative;
   width: 100%;
-  max-width: 400px;
-  height: 480px;
+  max-width: 360px; /* 적정 최대 너비 */
+  aspect-ratio: 3 / 4; /* 모바일/PC 상관없이 항상 동일한 비율 유지 */
   margin: 0 auto;
   background-color: #ffffff;
   border-radius: 20px;
   border: 2px solid #ffccd8;
   overflow: hidden;
+  box-sizing: border-box;
 }
 
 .korea-img-bg {
   width: 100%;
   height: 100%;
-  object-fit: contain;
+  object-fit: fill; /* 박스 크기에 맞춰 꽉 차게 늘어나므로 핀 좌표와 항상 일치 */
   position: absolute;
   top: 0;
   left: 0;
@@ -136,6 +140,7 @@
   pointer-events: none;
 }
 
+/* ─── 지역 핀 스타일 (모바일에서도 안 찌그러지게 최적화) ─── */
 .region-pin {
   position: absolute;
   transform: translate(-50%, -50%);
@@ -143,26 +148,29 @@
   flex-direction: column;
   align-items: center;
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: transform 0.2s ease;
   z-index: 5;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
 }
 
-.region-pin:hover {
-  transform: translate(-50%, -55%) scale(1.1);
+.region-pin:hover,
+.region-pin:active {
+  transform: translate(-50%, -50%) scale(1.08);
 }
 
 .region-bubble {
   background-color: #ffffff;
-  border: 2px solid #ff1493;
-  border-radius: 20px;
-  padding: 3px 8px;
-  font-size: 1rem;
+  border: 1.8px solid #ff1493;
+  border-radius: 18px;
+  padding: 2px 7px;
+  font-size: 0.9rem;
   font-weight: 700;
   color: #ff007f;
   display: flex;
   align-items: center;
-  gap: 4px;
-  box-shadow: 0 4px 10px rgba(255, 20, 147, 0.3);
+  gap: 3px;
+  box-shadow: 0 3px 8px rgba(255, 20, 147, 0.25);
   white-space: nowrap;
 }
 
@@ -170,43 +178,47 @@
   background-color: #ff1493;
   color: #ffffff;
   border-radius: 50%;
-  width: 19px;
-  height: 19px;
+  width: 17px;
+  height: 17px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  font-size: 0.85rem;
+  font-size: 0.78rem;
+  line-height: 1;
 }
 
-#pin-seoul      { top: 22%; left: 34%; }
-#pin-gyeonggi    { top: 27%; left: 45%; }
-#pin-gangwon    { top: 18%; left: 63%; }
-#pin-chungcheong { top: 38%; left: 36%; }
-#pin-gyeongsang  { top: 53%; left: 66%; }
-#pin-jeolla      { top: 62%; left: 33%; }
-#pin-jeju        { top: 92%; left: 27%; }
+/* ─── 각 지역별 정확한 핀 좌표 ─── */
+#pin-seoul        { top: 22%; left: 34%; }
+#pin-gyeonggi     { top: 27%; left: 47%; }
+#pin-gangwon      { top: 18%; left: 66%; }
+#pin-chungcheong  { top: 39%; left: 38%; }
+#pin-gyeongsang   { top: 54%; left: 68%; }
+#pin-jeolla       { top: 64%; left: 34%; }
+#pin-jeju         { top: 91%; left: 28%; }
 
+/* ─── 지역 클릭 상세 목록 ─── */
 .region-detail-box {
-  margin-top: 20px;
+  margin-top: 18px;
   background-color: #fffafc;
-  border: 2px solid #ffd4e2;
-  border-radius: 18px;
-  padding: 16px;
+  border: 1.8px solid #ffd4e2;
+  border-radius: 16px;
+  padding: 14px;
   display: none;
+  box-sizing: border-box;
 }
 
 .region-detail-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 12px;
+  margin-bottom: 10px;
   border-bottom: 2px dashed #ffd0df;
   padding-bottom: 8px;
 }
 
 .region-detail-header h3 {
   color: #ff007f;
-  font-size: 1.35rem;
+  font-size: 1.25rem;
   margin: 0;
 }
 
@@ -216,50 +228,80 @@
   font-size: 1.2rem;
   color: #a86b7c;
   cursor: pointer;
+  padding: 0 4px;
 }
 
 .region-restaurant-list {
   list-style: none;
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 8px;
+  padding: 0;
+  margin: 0;
 }
 
 .res-item {
   background-color: #ffffff;
-  border: 1.5px solid #ffccd9;
-  border-left: 5px solid #ff1493;
-  border-radius: 12px;
-  padding: 10px 14px;
+  border: 1.2px solid #ffccd9;
+  border-left: 4px solid #ff1493;
+  border-radius: 10px;
+  padding: 9px 12px;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  gap: 8px;
+  box-sizing: border-box;
+}
+
+.res-info {
+  flex: 1;
+  min-width: 0;
 }
 
 .res-info .res-name {
-  font-size: 1.2rem;
+  font-size: 1.15rem;
   font-weight: 700;
   color: #d11271;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .res-info .res-addr {
-  font-size: 0.95rem;
+  font-size: 0.9rem;
   color: #8c6873;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .naver-map-btn {
   background-color: #03c75a;
   color: #ffffff !important;
   text-decoration: none !important;
-  padding: 5px 10px;
+  padding: 5px 9px;
   border-radius: 8px;
-  font-size: 0.95rem;
+  font-size: 0.9rem;
   font-weight: 700;
   display: inline-flex;
   align-items: center;
-  gap: 3px;
+  gap: 2px;
+  white-space: nowrap;
+  flex-shrink: 0;
 }
 
 .naver-map-btn:hover {
   background-color: #02a34a;
+}
+
+@media (max-width: 480px) {
+  .region-bubble {
+    font-size: 0.82rem;
+    padding: 2px 5px;
+  }
+  .region-count {
+    width: 15px;
+    height: 15px;
+    font-size: 0.72rem;
+  }
 }

@@ -531,7 +531,7 @@
   }
   .category-card:last-child {
     grid-column: span 1;
-  }
+  }햣
   .cal-date { 
     min-height: 46px; 
     max-height: 46px; 
