@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>카페 다이어리 ☕</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Gaegu:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/diary.css">
+  <link rel="stylesheet" href="../css/cafe.css">
+</head>
+<body>
+  <div class="diary-wrapper">
+    <header class="diary-header">
+      <div class="kitty-img-container">
+        <img src="../img/kitty.png" alt="일기 쓰는 헬로키티" class="kitty-writing-img">
+      </div>
+      <div class="header-text">
+        <h1>My Cafe Diary</h1>
+        <p class="subtitle">달콤한 디저트와 향긋한 커피 ☕</p>
+      </div>
+    </header>
+
+    <main class="diary-content">
+      <div class="nav-top-row">
+        <a href="home.html" class="back-home-btn">🏠 홈으로</a>
+        <span class="badge">☕ 카페</span>
+      </div>
+
+      <section class="diary-form-card">
+        <div class="date-mood-row">
+          <div class="input-group">
+            <label for="cafe-date">📅 방문 날짜</label>
+            <input type="date" id="cafe-date" value="2026-08-31">
+          </div>
+          <div class="input-group">
+            <label for="cafe-mood">🌸 카페 분위기</label>
+            <select id="cafe-mood">
+              <option>디저트가 환상적 🍰</option>
+              <option>아늑하고 조용해요 🪑</option>
+              <option>인스타 감성 가득 ✨</option>
+              <option>커피가 맛있는 곳 ☕</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="input-group">
+          <label for="cafe-name">☕ 카페 이름</label>
+          <input type="text" id="cafe-name" placeholder="예: 런던 베이글 뮤지엄 도산점">
+        </div>
+
+        <div class="input-group">
+          <label for="cafe-menu">🍰 주문한 음료 & 디저트</label>
+          <input type="text" id="cafe-menu" placeholder="예: 아메리카노 & 딸기 수플레 팬케이크">
+        </div>
+
+        <div class="input-group">
+          <label for="cafe-address">📍 카페 주소 / 위치</label>
+          <input type="text" id="cafe-address" placeholder="예: 서울 강남구 언주로168길 33 (생략 시 카페명으로 지도 검색)">
+        </div>
+
+        <!-- 카페 사진 업로드 -->
+        <div class="input-group">
+          <label>📸 디저트 & 카페 사진</label>
+          <input type="file" id="cafe-photo-input" class="file-input-hidden" accept="image/*">
+          
+          <div class="photo-upload-container" id="upload-trigger">
+            <span class="upload-icon">📷</span>
+            <span class="upload-text" style="font-weight: bold; color: #ff1493; font-size: 1.15rem;">클릭해서 카페 사진 넣기</span>
+            <span class="upload-hint">예쁜 카페와 디저트 사진을 선택해주세요</span>
+          </div>
+
+          <div class="preview-box" id="preview-box">
+            <img src="" alt="카페 사진 미리보기" class="preview-img" id="preview-img">
+            <button type="button" class="remove-photo-btn" id="remove-photo">✕</button>
+          </div>
+        </div>
+
+        <div class="input-group">
+          <label for="cafe-review">📝 카페 리뷰 & 추억</label>
+          <textarea id="cafe-review" rows="5" placeholder="카페의 맛과 분위기, 나만의 힐링 순간들을 자유롭게 적어보세요 ₍ᐢ.ˬ.ᐢ₎"></textarea>
+        </div>
+
+        <button type="button" class="save-btn" id="save-cafe-btn">카페 기록 저장하기 ☕</button>
+      </section>
+    </main>
+
+    <footer class="diary-footer">
+      <p>© 2026 My Pink Hello Kitty Diary 🎀</p>
+    </footer>
+  </div>
+
+  <script src="../js/cafe.js"></script>
+</body>
+</html>

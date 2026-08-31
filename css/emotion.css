@@ -1,0 +1,114 @@
+/* ─── 감정 다이어리 전용 스타일 ─── */
+
+/* 감정 선택 칩/버튼 그룹 */
+.emotion-chips-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 6px;
+  }
+  
+  .emotion-chip {
+    padding: 8px 14px;
+    border-radius: 20px;
+    border: 1.8px solid #ffd4e2;
+    background-color: #ffffff;
+    color: #5c4349;
+    font-size: 1.1rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    user-select: none;
+  }
+  
+  .emotion-chip:hover {
+    background-color: #fff0f5;
+    border-color: #ff1493;
+    transform: translateY(-2px);
+  }
+  
+  .emotion-chip.active {
+    background: linear-gradient(135deg, #ff4081 0%, #ff1493 100%);
+    color: #ffffff;
+    border-color: #ff1493;
+    box-shadow: 0 4px 10px rgba(255, 20, 147, 0.3);
+  }
+  
+  /* 마음 온도/지수 슬라이더 영역 */
+  .mood-range-box {
+    background-color: #fffafc;
+    border: 1.5px solid #ffd4e2;
+    border-radius: 16px;
+    padding: 14px 16px;
+    margin-bottom: 14px;
+  }
+  
+  .mood-range-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: #ff007f;
+    margin-bottom: 8px;
+  }
+  
+  .mood-slider {
+    width: 100%;
+    accent-color: #ff1493;
+    cursor: pointer;
+  }
+  
+  /* ─── 감정 보관함 (emotion-list.html) 카드 전용 스타일 ─── */
+  .emotion-card-box {
+    background-color: #ffffff;
+    border-radius: 20px;
+    border: 2px solid #ffd0df;
+    border-left: 6px solid #ff4081;
+    padding: 18px 20px;
+    box-shadow: 0 4px 12px rgba(255, 105, 180, 0.08);
+    margin-bottom: 15px;
+    position: relative;
+    transition: transform 0.2s ease;
+  }
+  
+  .emotion-card-box:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(255, 20, 147, 0.15);
+  }
+  
+  .emotion-card-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 1.05rem;
+    color: #a86b7c;
+    margin-bottom: 8px;
+  }
+  
+  .emotion-tag {
+    background-color: #ffe6ef;
+    color: #ff007f;
+    border: 1px solid #ffb3c6;
+    border-radius: 12px;
+    padding: 2px 8px;
+    font-weight: 700;
+    font-size: 0.95rem;
+  }
+  
+  .emotion-title {
+    font-size: 1.35rem;
+    color: #d11271;
+    margin-bottom: 8px;
+  }
+  
+  .emotion-body {
+    font-size: 1.15rem;
+    line-height: 1.6;
+    color: #523b42;
+    white-space: pre-wrap;
+    background-color: #fff9fb;
+    padding: 12px;
+    border-radius: 12px;
+    border: 1px solid #ffedf2;
+  }

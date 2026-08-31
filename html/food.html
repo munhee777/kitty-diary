@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>맛집 다이어리 🍰</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Gaegu:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/diary.css">
+  <link rel="stylesheet" href="../css/food.css">
+</head>
+<body>
+
+  <div class="diary-wrapper">
+    <header class="diary-header">
+      <div class="kitty-img-container">
+        <img src="../img/kitty.png" alt="일기 쓰는 헬로키티" class="kitty-writing-img">
+      </div>
+      <div class="header-text">
+        <h1>My Food Diary</h1>
+        <p class="subtitle">맛있는 음식과 장소의 기록 🍰</p>
+      </div>
+    </header>
+
+    <main class="diary-content">
+      <div class="nav-top-row">
+        <a href="home.html" class="back-home-btn">🏠 홈으로</a>
+        <span class="badge">🍰 맛집</span>
+      </div>
+
+      <section class="diary-form-card">
+        <div class="date-mood-row">
+          <div class="input-group">
+            <label for="food-date">📅 방문 날짜</label>
+            <input type="date" id="food-date" value="2026-08-29">
+          </div>
+          <div class="input-group">
+            <label for="food-region">🗺️ 지역 구분</label>
+            <select id="food-region">
+              <option value="seoul">서울</option>
+              <option value="gyeonggi">경기 / 인천</option>
+              <option value="gangwon">강원</option>
+              <option value="chungcheong">충청 / 대전</option>
+              <option value="gyeongsang">경상 / 부산 / 대구</option>
+              <option value="jeolla">전라 / 광주</option>
+              <option value="jeju">제주</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="input-group">
+          <label for="food-name">🍴 식당 이름 & 대표 메뉴</label>
+          <input type="text" id="food-name" placeholder="예: 런던베이글뮤지엄 안국점">
+        </div>
+
+        <div class="input-group">
+          <label for="food-address">📍 상세 위치/주소</label>
+          <input type="text" id="food-address" placeholder="예: 서울 종로구 북촌로4길 20">
+        </div>
+
+        <div class="input-group">
+          <label>📸 음식 사진</label>
+          <input type="file" id="food-photo-input" class="file-input-hidden" accept="image/*">
+          <div class="photo-upload-container" id="upload-trigger">
+            <span class="upload-icon">📷</span>
+            <span class="upload-text" style="font-weight: bold; color: #ff1493; font-size: 1.15rem;">클릭해서 음식 사진 넣기</span>
+            <span class="upload-hint">JPG, PNG 파일 선택</span>
+          </div>
+          <div class="preview-box" id="preview-box">
+            <img src="" alt="음식 사진 미리보기" class="preview-img" id="preview-img">
+            <button type="button" class="remove-photo-btn" id="remove-photo">✕</button>
+          </div>
+        </div>
+
+        <div class="input-group">
+          <label for="food-review">📝 맛 리뷰</label>
+          <textarea id="food-review" rows="4" placeholder="맛과 분위기는 어땠나요? 자유롭게 적어보세요 ₍ᐢ.ˬ.ᐢ₎"></textarea>
+        </div>
+
+        <button type="button" class="save-btn" id="save-entry-btn">맛집 지도에 기록하기 🍓</button>
+      </section>
+
+      <section class="map-section-card">
+        <h2>🗺️ 나의 전국 맛집 지도</h2>
+        <p class="map-subtitle">지역을 클릭하면 저장된 맛집과 네이버 지도를 볼 수 있어요!</p>
+
+        <div class="korea-map-wrapper">
+          <img src="../img/korea.jpg" alt="대한민국 지도" class="korea-img-bg">
+
+          <div class="region-pin" id="pin-seoul" onclick="showRegionDetails('seoul')">
+            <div class="region-bubble">서울 <span class="region-count" id="count-seoul">0</span></div>
+          </div>
+          <div class="region-pin" id="pin-gyeonggi" onclick="showRegionDetails('gyeonggi')">
+            <div class="region-bubble">경기 <span class="region-count" id="count-gyeonggi">0</span></div>
+          </div>
+          <div class="region-pin" id="pin-gangwon" onclick="showRegionDetails('gangwon')">
+            <div class="region-bubble">강원 <span class="region-count" id="count-gangwon">0</span></div>
+          </div>
+          <div class="region-pin" id="pin-chungcheong" onclick="showRegionDetails('chungcheong')">
+            <div class="region-bubble">충청 <span class="region-count" id="count-chungcheong">0</span></div>
+          </div>
+          <div class="region-pin" id="pin-gyeongsang" onclick="showRegionDetails('gyeongsang')">
+            <div class="region-bubble">경상 <span class="region-count" id="count-gyeongsang">0</span></div>
+          </div>
+          <div class="region-pin" id="pin-jeolla" onclick="showRegionDetails('jeolla')">
+            <div class="region-bubble">전라 <span class="region-count" id="count-jeolla">0</span></div>
+          </div>
+          <div class="region-pin" id="pin-jeju" onclick="showRegionDetails('jeju')">
+            <div class="region-bubble">제주 <span class="region-count" id="count-jeju">0</span></div>
+          </div>
+        </div>
+
+        <div class="region-detail-box" id="region-detail-box">
+          <div class="region-detail-header">
+            <h3 id="selected-region-title">📍 지역 맛집 목록</h3>
+            <button class="region-close-btn" onclick="closeRegionDetails()">✕</button>
+          </div>
+          <ul class="region-restaurant-list" id="region-restaurant-list"></ul>
+        </div>
+      </section>
+
+    </main>
+
+    <footer class="diary-footer">
+      <p>© 2026 My Pink Hello Kitty Diary 🎀</p>
+    </footer>
+  </div>
+
+  <script src="../js/food.js"></script>
+</body>
+</html>

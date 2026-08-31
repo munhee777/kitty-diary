@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>감정 다이어리 💖</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Gaegu:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/emotion.css">
+  <link rel="stylesheet" href="../css/diary.css">
+  <style>
+    .nav-top-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; }
+    .back-home-btn {
+      text-decoration: none; background-color: #ffffff; color: #ff1493; border: 2px solid #ffccd8;
+      padding: 6px 14px; border-radius: 12px; font-weight: 700; font-size: 1.1rem;
+    }
+    .badge { background-color: #ff1493; color: white; padding: 4px 12px; border-radius: 20px; font-weight: bold; font-size: 1.1rem; }
+  </style>
+</head>
+<body>
+  <div class="diary-wrapper">
+    <header class="diary-header">
+      <div class="kitty-img-container">
+        <img src="../img/kitty.png" alt="일기 쓰는 헬로키티" class="kitty-writing-img">
+      </div>
+      <div class="header-text">
+        <h1>My Emotion Diary</h1>
+        <p class="subtitle">마음속 솔직한 기분 정리 💖</p>
+      </div>
+    </header>
+
+    <main class="diary-content">
+      <div class="nav-top-row">
+        <a href="home.html" class="back-home-btn">🏠 홈으로</a>
+        <span class="badge">💖 감정</span>
+      </div>
+
+      <section class="diary-form-card">
+        <div class="date-mood-row">
+          <div class="input-group">
+            <label for="diary-date">📅 날짜</label>
+            <input type="date" id="diary-date" value="2026-08-29">
+          </div>
+          <div class="input-group">
+            <label for="diary-mood">🎀 마음 상태</label>
+            <select id="diary-mood">
+              <option>벅차오르게 행복해요 ✨</option>
+              <option>마음이 차분해요 🌸</option>
+              <option>조금 지치고 힘들어요 💧</option>
+              <option>마음이 복잡하고 싱숭생숭해요 💭</option>
+            </select>
+          </div>
+        </div>
+        <div class="input-group">
+          <label>오늘 내 마음의 한 줄 요약</label>
+          <input type="text" placeholder="마음속 감정을 한 문장으로 표현해봐요...">
+        </div>
+        <div class="input-group">
+          <label>솔직한 감정 털어놓기</label>
+          <textarea rows="7" placeholder="누구에게도 말하지 못한 나만의 솔직한 생각과 감정을 키티에게 털어놓아 보세요 ₍ᐢ.ˬ.ᐢ₎"></textarea>
+        </div>
+        <button type="button" class="save-btn">감정 기록 담아두기 💌</button>
+      </section>
+    </main>
+
+    <footer class="diary-footer">
+      <p>© 2026 My Pink Hello Kitty Diary 🎀</p>
+    </footer>
+  </div>
+</body>
+</html>

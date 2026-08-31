@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>여행 기록 보관함 ✈️</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Gaegu:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/diary.css">
+  <link rel="stylesheet" href="../css/travel.css">
+</head>
+<body>
+  <div class="diary-wrapper">
+    <header class="diary-header">
+      <div class="kitty-img-container">
+        <img src="../img/kitty.png" alt="일기 쓰는 헬로키티" class="kitty-writing-img">
+      </div>
+      <div class="header-text">
+        <h1>Travel Archives</h1>
+        <p class="subtitle">설레는 발걸음과 여행의 추억 ✈️</p>
+      </div>
+    </header>
+
+    <main class="diary-content">
+      <div class="nav-top-row">
+        <a href="home.html" class="back-home-btn">🏠 홈으로</a>
+        <span class="badge">✈️ 여행</span>
+      </div>
+
+
+      <!-- 저장된 여행 일기 카드들이 렌더링되는 영역 -->
+      <div class="diary-cards-container" id="travel-cards-container"></div>
+
+      <!-- 하단 플로팅/고정 새 글 작성 유도 버튼 -->
+      <div class="bottom-write-wrap">
+        <a href="travel.html" class="bottom-new-write-btn">✈️ 또 다른 여행 추억 기록하러 가기 💌</a>
+      </div>
+    </main>
+
+    <footer class="diary-footer">
+      <p>© 2026 My Pink Hello Kitty Diary 🎀</p>
+    </footer>
+  </div>
+
+  <!-- ─── 글 클릭 시 열리는 상세 보기 모달 팝업 ─── -->
+  <div class="travel-modal-overlay" id="travel-detail-modal">
+    <div class="travel-modal-content">
+      <div class="travel-modal-header">
+        <h3>✈️ 여행 추억 펼쳐보기</h3>
+        <button type="button" class="travel-modal-close-btn" id="travel-modal-close-btn">✕</button>
+      </div>
+
+      <div class="travel-detail-meta">
+        <span id="detail-travel-date">📅 2026.08.31</span>
+        <span class="travel-badge-loc" id="detail-travel-loc">📍 여행지</span>
+      </div>
+
+      <h2 class="travel-detail-title" id="detail-travel-title">여행 제목</h2>
+
+      <img src="" alt="여행 사진" class="travel-detail-img" id="detail-travel-img">
+      <p class="travel-detail-body" id="detail-travel-body"></p>
+
+      <div class="travel-modal-actions">
+        <button type="button" class="travel-detail-delete-btn" id="detail-travel-delete-btn">일기 삭제 🗑️</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="../js/travel.js"></script>
+</body>
+</html>

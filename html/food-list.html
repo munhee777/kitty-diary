@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>맛집 지도 보관함 🍰</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Gaegu:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/diary.css">
+  <link rel="stylesheet" href="../css/food.css">
+  <style>
+    .list-header-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 15px;
+    }
+    .map-section-card {
+      margin-top: 10px; /* 작성 폼이 없으므로 상단 여백 조절 */
+    }
+  </style>
+</head>
+<body>
+
+  <div class="diary-wrapper">
+    <header class="diary-header">
+      <div class="kitty-img-container">
+        <img src="../img/kitty.png" alt="일기 쓰는 헬로키티" class="kitty-writing-img">
+      </div>
+      <div class="header-text">
+        <h1>Food Map Archives</h1>
+        <p class="subtitle">내가 다녀온 전국의 맛있는 기억들 🍰</p>
+      </div>
+    </header>
+
+    <main class="diary-content">
+      <div class="nav-top-row">
+        <a href="home.html" class="back-home-btn">🏠 홈으로</a>
+        <span class="badge">🍰 맛집</span>
+      </div>
+
+      <!-- 상단 제목 & 새 기록 작성 이동 버튼 -->
+      <div class="list-header-row">
+        <h2 class="list-title">나의 맛집 지도 🗺️</h2>
+        <a href="food.html" class="new-write-btn">✏️ 새 맛집 기록하기</a>
+      </div>
+
+      <!-- 전국 맛집 지도 섹션 -->
+      <section class="map-section-card">
+        <p class="map-subtitle">지역을 클릭하면 저장된 맛집과 네이버 지도를 볼 수 있어요!</p>
+
+        <div class="korea-map-wrapper">
+          <img src="../img/korea.jpg" alt="대한민국 지도" class="korea-img-bg">
+
+          <!-- 지역 핀 & 개수 뱃지 -->
+          <div class="region-pin" id="pin-seoul" onclick="showRegionDetails('seoul')">
+            <div class="region-bubble">서울 <span class="region-count" id="count-seoul">0</span></div>
+          </div>
+          <div class="region-pin" id="pin-gyeonggi" onclick="showRegionDetails('gyeonggi')">
+            <div class="region-bubble">경기 <span class="region-count" id="count-gyeonggi">0</span></div>
+          </div>
+          <div class="region-pin" id="pin-gangwon" onclick="showRegionDetails('gangwon')">
+            <div class="region-bubble">강원 <span class="region-count" id="count-gangwon">0</span></div>
+          </div>
+          <div class="region-pin" id="pin-chungcheong" onclick="showRegionDetails('chungcheong')">
+            <div class="region-bubble">충청 <span class="region-count" id="count-chungcheong">0</span></div>
+          </div>
+          <div class="region-pin" id="pin-gyeongsang" onclick="showRegionDetails('gyeongsang')">
+            <div class="region-bubble">경상 <span class="region-count" id="count-gyeongsang">0</span></div>
+          </div>
+          <div class="region-pin" id="pin-jeolla" onclick="showRegionDetails('jeolla')">
+            <div class="region-bubble">전라 <span class="region-count" id="count-jeolla">0</span></div>
+          </div>
+          <div class="region-pin" id="pin-jeju" onclick="showRegionDetails('jeju')">
+            <div class="region-bubble">제주 <span class="region-count" id="count-jeju">0</span></div>
+          </div>
+        </div>
+
+        <!-- 지역 클릭 시 열리는 상세 목록 박스 -->
+        <div class="region-detail-box" id="region-detail-box">
+          <div class="region-detail-header">
+            <h3 id="selected-region-title">📍 지역 맛집 목록</h3>
+            <button class="region-close-btn" onclick="closeRegionDetails()">✕</button>
+          </div>
+          <ul class="region-restaurant-list" id="region-restaurant-list"></ul>
+        </div>
+      </section>
+
+    </main>
+
+    <footer class="diary-footer">
+      <p>© 2026 My Pink Hello Kitty Diary 🎀</p>
+    </footer>
+  </div>
+
+  <script src="../js/food.js"></script>
+</body>
+</html>

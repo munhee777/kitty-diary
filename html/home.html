@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Kitty Diary - Home</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Gaegu:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/home.css">
+</head>
+<body>
+
+  <div class="diary-wrapper">
+    <header class="diary-header">
+      <div class="kitty-img-container">
+        <img src="../img/kitty.png" alt="일기 쓰는 헬로키티" class="kitty-writing-img">
+      </div>
+      <div class="header-text">
+        <h1>My Kitty Diary</h1>
+        <p class="subtitle">오늘 하루의 소중한 기록 🎀</p>
+      </div>
+    </header>
+
+    <main class="diary-content">
+      <!-- 오늘 일기 작성 팝업 버튼 -->
+      <button type="button" class="write-entry-btn" id="open-category-modal">✏️ 오늘 일기 쓰러 가기 💌</button>
+
+      <!-- 카테고리별 보관함 영역 -->
+      <section class="diary-list-section">
+        <h2>내 다이어리 보관함 📖</h2>
+        <div class="category-grid">
+          <a href="daily-list.html" class="category-card">
+            <span class="cat-icon">🧸</span>
+            <div class="cat-text-wrap">
+              <div class="cat-name-row">
+                <span class="cat-name">일상 일기</span>
+              </div>
+              <span class="cat-desc">소소한 하루 일기 모아보기</span>
+            </div>
+          </a>
+
+          <a href="food-list.html" class="category-card">
+            <span class="cat-icon">🍰</span>
+            <div class="cat-text-wrap">
+              <div class="cat-name-row">
+                <span class="cat-name">맛집 지도</span>
+              </div>
+              <span class="cat-desc">전국 맛집 지도 & 탐방 기록</span>
+            </div>
+          </a>
+
+          <a href="cafe-list.html" class="category-card">
+            <span class="cat-icon">☕</span>
+            <div class="cat-text-wrap">
+              <div class="cat-name-row">
+                <span class="cat-name">카페 기록</span>
+              </div>
+              <span class="cat-desc">디저트와 커피 추억 보관함</span>
+            </div>
+          </a>
+
+          <a href="travel-list.html" class="category-card">
+            <span class="cat-icon">✈️</span>
+            <div class="cat-text-wrap">
+              <div class="cat-name-row">
+                <span class="cat-name">여행 기록</span>
+              </div>
+              <span class="cat-desc">설렜던 여행지 추억 보관함</span>
+            </div>
+          </a>
+
+          <a href="emotion-list.html" class="category-card">
+            <span class="cat-icon">💖</span>
+            <div class="cat-text-wrap">
+              <div class="cat-name-row">
+                <span class="cat-name">감정 노트</span>
+              </div>
+              <span class="cat-desc">솔직한 마음과 생각 모아보기</span>
+            </div>
+          </a>
+        </div>
+      </section>
+
+      <!-- ─── 인터랙티브 동적 캘린더 섹션 ─── -->
+      <section class="calendar-section-card">
+        <div class="calendar-header">
+          <button type="button" class="calendar-nav-btn" id="prev-month-btn">◀</button>
+          <h3 id="cal-month-title">2026년 8월 🗓️</h3>
+          <button type="button" class="calendar-nav-btn" id="next-month-btn">▶</button>
+        </div>
+
+        <!-- 요일 헤더 -->
+        <div class="calendar-weekdays">
+          <div class="cal-day-name sun">일</div>
+          <div class="cal-day-name">월</div>
+          <div class="cal-day-name">화</div>
+          <div class="cal-day-name">수</div>
+          <div class="cal-day-name">목</div>
+          <div class="cal-day-name">금</div>
+          <div class="cal-day-name sat">토</div>
+        </div>
+
+        <!-- 자바스크립트로 날짜가 채워지는 그리드 -->
+        <div class="calendar-grid" id="cal-dates-grid"></div>
+
+        <!-- 선택된 날짜의 일정 입력 & 리스트 -->
+        <div class="schedule-box">
+          <h4 id="selected-date-label">🎀 선택한 날짜의 메모 목록</h4>
+          
+          <div class="schedule-input-row">
+            <input type="text" id="schedule-input" placeholder="날짜를 누르고 메모나 일정을 적어보세요...">
+            <button type="button" class="schedule-add-btn" id="schedule-add-btn">추가 ✨</button>
+          </div>
+
+          <ul class="schedule-list" id="schedule-list"></ul>
+        </div>
+      </section>
+
+      <section class="backup-section-card">
+        <h4>📦 데이터 백업 & 다른 기기로 옮기기</h4>
+        <p class="backup-desc">기기를 바꾸거나 아이패드/폰으로 일기를 옮길 때 사용하세요!</p>
+        
+        <div class="backup-btn-row">
+          <button type="button" class="backup-btn export-btn" id="export-backup-btn">
+            💾 일기 백업 파일 다운로드
+          </button>
+          
+          <button type="button" class="backup-btn import-btn" id="import-trigger-btn">
+            📂 백업 파일 불러오기 (복원)
+          </button>
+          <input type="file" id="import-file-input" accept=".json" style="display: none;">
+        </div>
+      </section>
+    </main>
+
+    <footer class="diary-footer">
+      <p>© 2026 My Pink Hello Kitty Diary 🎀</p>
+    </footer>
+  </div>
+
+  <!-- ─── 1. 카테고리 선택 모달 팝업 ─── -->
+  <div class="modal-overlay" id="category-modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3>🎀 어떤 일기를 쓸까요?</h3>
+        <button type="button" class="modal-close-btn" id="close-category-modal">✕</button>
+      </div>
+      <div class="modal-category-list">
+        <a href="daily.html" class="modal-cat-item">
+          <span class="modal-cat-icon">🧸</span>
+          <span class="modal-cat-title">일상 일기</span>
+          <span class="modal-cat-sub">소소한 하루 쓰기 ›</span>
+        </a>
+        <a href="food.html" class="modal-cat-item">
+          <span class="modal-cat-icon">🍰</span>
+          <span class="modal-cat-title">맛집 일기</span>
+          <span class="modal-cat-sub">식당 & 지도 기록 ›</span>
+        </a>
+        <a href="cafe.html" class="modal-cat-item">
+          <span class="modal-cat-icon">☕</span>
+          <span class="modal-cat-title">카페 일기</span>
+          <span class="modal-cat-sub">커피 & 디저트 쓰기 ›</span>
+        </a>
+        <a href="travel.html" class="modal-cat-item">
+          <span class="modal-cat-icon">✈️</span>
+          <span class="modal-cat-title">여행 일기</span>
+          <span class="modal-cat-sub">여행의 추억 남기기 ›</span>
+        </a>
+        <a href="emotion.html" class="modal-cat-item">
+          <span class="modal-cat-icon">💖</span>
+          <span class="modal-cat-title">감정 일기</span>
+          <span class="modal-cat-sub">솔직한 마음 털어놓기 ›</span>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ─── 2. 달력 일정 상세 확인 모달 팝업 ─── -->
+  <div class="modal-overlay" id="event-detail-modal">
+    <div class="modal-content detail-modal-content">
+      <div class="modal-header">
+        <h3 id="detail-date">📅 일정 상세</h3>
+        <button type="button" class="modal-close-btn" id="close-detail-modal-btn">✕</button>
+      </div>
+      <div class="detail-body-box">
+        <div class="detail-icon">🎀</div>
+        <p class="detail-text" id="detail-text"></p>
+      </div>
+      <div class="detail-footer-actions">
+        <button type="button" class="detail-delete-btn" id="detail-delete-btn">일정 삭제 🗑️</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="../js/home.js"></script>
+</body>
+</html>

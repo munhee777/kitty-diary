@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>카페 기록 보관함 ☕</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Gaegu:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/diary.css">
+  <link rel="stylesheet" href="../css/cafe.css">
+</head>
+<body>
+  <div class="diary-wrapper">
+    <header class="diary-header">
+      <div class="kitty-img-container">
+        <img src="../img/kitty.png" alt="일기 쓰는 헬로키티" class="kitty-writing-img">
+      </div>
+      <div class="header-text">
+        <h1>Cafe Archives</h1>
+        <p class="subtitle">달콤한 디저트와 카페의 추억 ☕</p>
+      </div>
+    </header>
+
+    <main class="diary-content">
+      <div class="nav-top-row">
+        <a href="home.html" class="back-home-btn">🏠 홈으로</a>
+        <span class="badge">☕ 카페</span>
+      </div>
+
+      <div class="list-header-row">
+        <h2 class="list-title">내 카페 탐방 기록 🍰</h2>
+      </div>
+
+      <!-- 카페 카드들이 렌더링되는 영역 -->
+      <div class="diary-cards-container" id="cafe-cards-container"></div>
+
+      <!-- 하단 새 글 작성 이동 버튼 -->
+      <div class="bottom-write-wrap">
+        <a href="cafe.html" class="bottom-new-write-btn">☕ 또 다른 달콤한 카페 기록하러 가기 🍰</a>
+      </div>
+    </main>
+
+    <footer class="diary-footer">
+      <p>© 2026 My Pink Hello Kitty Diary 🎀</p>
+    </footer>
+  </div>
+
+  <!-- ─── 카드 클릭 시 열리는 상세 보기 모달 ─── -->
+  <div class="cafe-modal-overlay" id="cafe-detail-modal">
+    <div class="cafe-modal-content">
+      <div class="cafe-modal-header">
+        <h3>☕ 카페 추억 펼쳐보기</h3>
+        <button type="button" class="cafe-modal-close-btn" id="cafe-modal-close-btn">✕</button>
+      </div>
+
+      <div class="cafe-detail-meta">
+        <span id="detail-cafe-date">📅 2026.08.31</span>
+        <span class="cafe-badge-mood" id="detail-cafe-mood">분위기</span>
+      </div>
+
+      <h2 class="cafe-detail-title" id="detail-cafe-title">카페 이름</h2>
+
+      <img src="" alt="카페 사진" class="cafe-detail-img" id="detail-cafe-img">
+      <p class="cafe-detail-body" id="detail-cafe-body"></p>
+
+      <!-- 네이버 지도 위치 확인 박스 -->
+      <div class="cafe-modal-map-box">
+        <div>
+          <strong style="color: #1f7a4d; display:block;">📍 카페 위치</strong>
+          <span id="detail-cafe-addr" style="font-size: 0.95rem; color: #557766;">주소</span>
+        </div>
+        <a href="#" target="_blank" class="naver-map-btn" id="detail-cafe-map-link">
+          🗺️ 네이버지도
+        </a>
+      </div>
+
+      <div class="cafe-modal-actions">
+        <button type="button" class="cafe-detail-delete-btn" id="detail-cafe-delete-btn">기록 삭제 🗑️</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="../js/cafe.js"></script>
+</body>
+</html>
