@@ -2,18 +2,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const STORAGE_KEY = 'kitty_cafe_diary_entries';
   
     // 기본 예시 데이터
-    const defaultEntries = [
-      {
-        id: 1,
-        date: '2026-08-31',
-        mood: '디저트가 환상적 🍰',
-        name: '핑크 버터 카페',
-        menu: '딸기 크림 라떼 & 스콘',
-        address: '서울 마포구 연남로 12',
-        review: '우연히 들어간 골목 카페! 핑크빛 인테리어가 너무 아기자기하고 딸기 크림 라떼의 부드러움이 일품이었다 ₍ᐢ.ˬ.ᐢ₎',
-        photo: ''
-      }
-    ];
+    const defaultEntries = [];
   
     function getEntries() {
       const data = localStorage.getItem(STORAGE_KEY);

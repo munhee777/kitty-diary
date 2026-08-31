@@ -1,114 +1,60 @@
-/* ─── 감정 다이어리 전용 스타일 ─── */
+.list-header-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 18px;
+}
+.list-title { font-size: 1.5rem; color: #ff007f; }
 
-/* 감정 선택 칩/버튼 그룹 */
-.emotion-chips-group {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
-    margin-top: 6px;
-  }
-  
-  .emotion-chip {
-    padding: 8px 14px;
-    border-radius: 20px;
-    border: 1.8px solid #ffd4e2;
-    background-color: #ffffff;
-    color: #5c4349;
-    font-size: 1.1rem;
-    font-weight: 700;
-    cursor: pointer;
-    transition: all 0.2s ease;
-    user-select: none;
-  }
-  
-  .emotion-chip:hover {
-    background-color: #fff0f5;
-    border-color: #ff1493;
-    transform: translateY(-2px);
-  }
-  
-  .emotion-chip.active {
-    background: linear-gradient(135deg, #ff4081 0%, #ff1493 100%);
-    color: #ffffff;
-    border-color: #ff1493;
-    box-shadow: 0 4px 10px rgba(255, 20, 147, 0.3);
-  }
-  
-  /* 마음 온도/지수 슬라이더 영역 */
-  .mood-range-box {
-    background-color: #fffafc;
-    border: 1.5px solid #ffd4e2;
-    border-radius: 16px;
-    padding: 14px 16px;
-    margin-bottom: 14px;
-  }
-  
-  .mood-range-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    font-size: 1.15rem;
-    font-weight: 700;
-    color: #ff007f;
-    margin-bottom: 8px;
-  }
-  
-  .mood-slider {
-    width: 100%;
-    accent-color: #ff1493;
-    cursor: pointer;
-  }
-  
-  /* ─── 감정 보관함 (emotion-list.html) 카드 전용 스타일 ─── */
-  .emotion-card-box {
-    background-color: #ffffff;
-    border-radius: 20px;
-    border: 2px solid #ffd0df;
-    border-left: 6px solid #ff4081;
-    padding: 18px 20px;
-    box-shadow: 0 4px 12px rgba(255, 105, 180, 0.08);
-    margin-bottom: 15px;
-    position: relative;
-    transition: transform 0.2s ease;
-  }
-  
-  .emotion-card-box:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 6px 16px rgba(255, 20, 147, 0.15);
-  }
-  
-  .emotion-card-top {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    font-size: 1.05rem;
-    color: #a86b7c;
-    margin-bottom: 8px;
-  }
-  
-  .emotion-tag {
-    background-color: #ffe6ef;
-    color: #ff007f;
-    border: 1px solid #ffb3c6;
-    border-radius: 12px;
-    padding: 2px 8px;
-    font-weight: 700;
-    font-size: 0.95rem;
-  }
-  
-  .emotion-title {
-    font-size: 1.35rem;
-    color: #d11271;
-    margin-bottom: 8px;
-  }
-  
-  .emotion-body {
-    font-size: 1.15rem;
-    line-height: 1.6;
-    color: #523b42;
-    white-space: pre-wrap;
-    background-color: #fff9fb;
-    padding: 12px;
-    border-radius: 12px;
-    border: 1px solid #ffedf2;
-  }
+.bottom-write-wrap { margin-top: 25px; text-align: center; }
+.bottom-new-write-btn {
+  display: block; width: 100%; text-decoration: none !important;
+  background: linear-gradient(180deg, #ff3385 0%, #ff007f 100%);
+  color: #ffffff !important; padding: 12px; border-radius: 16px;
+  font-size: 1.25rem; font-weight: 700; box-shadow: 0 6px 15px rgba(255, 0, 127, 0.3);
+  transition: all 0.2s ease;
+}
+.bottom-new-write-btn:hover { filter: brightness(1.08); transform: translateY(-1px); }
+
+/* 감정 카드 */
+.emotion-entry-card {
+  position: relative; display: flex; flex-direction: column; gap: 8px;
+  cursor: pointer; transition: transform 0.2s ease;
+}
+.emotion-entry-card:hover { transform: translateY(-2px); }
+.emotion-card-header { display: flex; justify-content: space-between; align-items: center; font-size: 1.05rem; color: #a86b7c; }
+.emotion-badge { background-color: #ffe6ef; color: #ff007f; border: 1.5px solid #ffccd9; padding: 3px 10px; border-radius: 12px; font-weight: 700; font-size: 1rem; }
+.emotion-card-info { min-width: 0; }
+.emotion-card-title { font-size: 1.35rem; color: #d11271; margin-bottom: 4px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.emotion-card-preview { font-size: 1.05rem; color: #694a53; line-height: 1.4; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+
+/* 감정 상세 모달 */
+.emotion-modal-overlay {
+  position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+  background-color: rgba(74, 48, 56, 0.45); backdrop-filter: blur(3px);
+  display: none; justify-content: center; align-items: center; z-index: 100; padding: 20px;
+}
+.emotion-modal-content {
+  background-color: #ffffff; border-radius: 26px; border: 4px solid #ff1493;
+  box-shadow: 0 16px 36px rgba(255, 20, 147, 0.3); width: 100%; max-width: 480px;
+  max-height: 85vh; overflow-y: auto; padding: 22px 20px;
+  animation: modal-pop 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+.emotion-modal-header { display: flex; justify-content: space-between; align-items: center; border-bottom: 2px dashed #ffd0df; padding-bottom: 10px; margin-bottom: 14px; }
+.emotion-modal-header h3 { font-size: 1.45rem; color: #ff007f; margin: 0; }
+.emotion-modal-close-btn { background: none; border: none; font-size: 1.4rem; color: #a86b7c; cursor: pointer; }
+.emotion-modal-close-btn:hover { color: #ff007f; }
+
+.emotion-detail-meta { display: flex; justify-content: space-between; font-size: 1.05rem; color: #a86b7c; margin-bottom: 10px; }
+.emotion-detail-title { font-size: 1.45rem; color: #d11271; font-weight: 700; margin-bottom: 14px; }
+
+.emotion-box-section {
+  background-color: #fff9fb; border: 1.5px solid #ffedf2; border-radius: 14px;
+  padding: 12px; margin-bottom: 12px;
+}
+.emotion-box-title { font-size: 1.1rem; color: #ff007f; font-weight: 700; margin-bottom: 6px; display: block; }
+.emotion-box-text { font-size: 1.15rem; color: #4a343a; line-height: 1.5; white-space: pre-wrap; margin: 0; }
+
+.emotion-modal-actions { display: flex; justify-content: flex-end; margin-top: 14px; }
+.emotion-detail-delete-btn { background-color: #ffe6ef; color: #ff007f; border: 1.5px solid #ffccd9; padding: 6px 14px; border-radius: 10px; font-size: 1.05rem; font-weight: 700; cursor: pointer; }
+.emotion-detail-delete-btn:hover { background-color: #ff007f; color: #ffffff; }

@@ -1,7 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const STORAGE_KEY = 'kitty_travel_diary_entries';
+    const STORAGE_KEY = 'kitty_daily_diary_entries';
   
-    // 기본 예시 데이터
     const defaultEntries = [];
   
     function getEntries() {
@@ -17,8 +16,8 @@ document.addEventListener('DOMContentLoaded', () => {
       localStorage.setItem(STORAGE_KEY, JSON.stringify(entries));
     }
   
-    // ─── 1. 여행 작성 페이지 (travel.html) 로직 ───
-    const fileInput = document.getElementById('travel-photo-input');
+    // 1. 일상 작성 페이지 (daily.html)
+    const fileInput = document.getElementById('daily-photo-input');
     const uploadTrigger = document.getElementById('upload-trigger');
     const previewBox = document.getElementById('preview-box');
     const previewImg = document.getElementById('preview-img');
@@ -42,33 +41,35 @@ document.addEventListener('DOMContentLoaded', () => {
         }
       });
   
-      removeBtn.addEventListener('click', (e) => {
-        e.stopPropagation();
-        fileInput.value = '';
-        currentPhotoBase64 = '';
-        previewImg.src = '';
-        previewBox.style.display = 'none';
-        uploadTrigger.style.display = 'flex';
-      });
+      if (removeBtn) {
+        removeBtn.addEventListener('click', (e) => {
+          e.stopPropagation();
+          fileInput.value = '';
+          currentPhotoBase64 = '';
+          previewImg.src = '';
+          previewBox.style.display = 'none';
+          uploadTrigger.style.display = 'flex';
+        });
+      }
     }
   
-    const saveBtn = document.getElementById('save-travel-btn');
+    const saveBtn = document.getElementById('save-daily-btn');
     if (saveBtn) {
       saveBtn.addEventListener('click', () => {
-        const date = document.getElementById('travel-date').value;
-        const location = document.getElementById('travel-location').value.trim();
-        const title = document.getElementById('travel-title').value.trim();
-        const content = document.getElementById('travel-content').value.trim();
+        const date = document.getElementById('daily-date').value;
+        const mood = document.getElementById('daily-mood').value;
+        const title = document.getElementById('daily-title').value.trim();
+        const content = document.getElementById('daily-content').value.trim();
   
         if (!title || !content) {
-          alert('제목과 여행 내용을 모두 입력해주세요!');
+          alert('제목과 일기 내용을 모두 입력해주세요!');
           return;
         }
   
         const newEntry = {
           id: Date.now(),
-          date: date || '2026-08-29',
-          location: location || '어딘가로 떠난 여행',
+          date: date || '2026-08-31',
+          mood,
           title,
           content,
           photo: currentPhotoBase64
@@ -78,71 +79,70 @@ document.addEventListener('DOMContentLoaded', () => {
         entries.unshift(newEntry);
         saveEntries(entries);
   
-        alert('설레는 여행 일기가 저장되었습니다! ✈️💌');
-        location.href = 'travel-list.html'; // 저장 후 보관함 페이지로 자동 이동
+        alert('소중한 일상 일기가 저장되었습니다! 🎀💌');
+        location.href = 'daily-list.html';
       });
     }
   
-    // ─── 2. 여행 보관함 페이지 (travel-list.html) 렌더링 & 모달 ───
-    const travelCardsContainer = document.getElementById('travel-cards-container');
-    const modal = document.getElementById('travel-detail-modal');
-    const modalCloseBtn = document.getElementById('travel-modal-close-btn');
+    // 2. 일상 보관함 페이지 (daily-list.html)
+    const dailyCardsContainer = document.getElementById('daily-cards-container');
+    const modal = document.getElementById('daily-detail-modal');
+    const modalCloseBtn = document.getElementById('daily-modal-close-btn');
   
-    const detailDate = document.getElementById('detail-travel-date');
-    const detailLoc = document.getElementById('detail-travel-loc');
-    const detailTitle = document.getElementById('detail-travel-title');
-    const detailImg = document.getElementById('detail-travel-img');
-    const detailBody = document.getElementById('detail-travel-body');
-    const detailDeleteBtn = document.getElementById('detail-travel-delete-btn');
+    const detailDate = document.getElementById('detail-daily-date');
+    const detailMood = document.getElementById('detail-daily-mood');
+    const detailTitle = document.getElementById('detail-daily-title');
+    const detailImg = document.getElementById('detail-daily-img');
+    const detailBody = document.getElementById('detail-daily-body');
+    const detailDeleteBtn = document.getElementById('detail-daily-delete-btn');
     let currentDetailId = null;
   
-    function renderTravelList() {
-      if (!travelCardsContainer) return;
+    function renderDailyList() {
+      if (!dailyCardsContainer) return;
   
       const entries = getEntries();
-      travelCardsContainer.innerHTML = '';
+      dailyCardsContainer.innerHTML = '';
   
       if (entries.length === 0) {
-        travelCardsContainer.innerHTML = '<div style="text-align:center; padding:25px; color:#b58d99; font-size:1.15rem;">아직 기록된 여행 일기가 없어요 ₍ᐢ.ˬ.ᐢ₎</div>';
+        dailyCardsContainer.innerHTML = '<div style="text-align:center; padding:25px; color:#b58d99; font-size:1.15rem;">아직 기록된 일상 일기가 없어요 ₍ᐢ.ˬ.ᐢ₎</div>';
         return;
       }
   
       entries.forEach(entry => {
         const card = document.createElement('article');
-        card.className = 'entry-card-box travel-entry-card';
+        card.className = 'entry-card-box daily-entry-card';
   
         let thumbHtml = '';
         if (entry.photo) {
-          thumbHtml = `<img src="${entry.photo}" alt="여행 썸네일" class="travel-card-thumb">`;
+          thumbHtml = `<img src="${entry.photo}" alt="일상 사진" class="daily-card-thumb">`;
         }
   
         card.innerHTML = `
-          <div class="travel-card-header">
+          <div class="daily-card-header">
             <span>📅 ${entry.date}</span>
-            <span class="travel-badge-loc">📍 ${entry.location}</span>
+            <span class="daily-badge-mood">${entry.mood}</span>
           </div>
-          <div class="travel-card-main">
+          <div class="daily-card-main">
             ${thumbHtml}
-            <div class="travel-card-info">
-              <h3 class="travel-card-title">${entry.title}</h3>
-              <p class="travel-card-preview">${entry.content}</p>
+            <div class="daily-card-info">
+              <h3 class="daily-card-title">${entry.title}</h3>
+              <p class="daily-card-preview">${entry.content}</p>
             </div>
           </div>
         `;
   
-        // 카드 클릭 시 상세 모달 오픈
         card.addEventListener('click', () => {
-          openTravelDetail(entry);
+          openDailyDetail(entry);
         });
   
-        travelCardsContainer.appendChild(card);
+        dailyCardsContainer.appendChild(card);
       });
     }
   
-    function openTravelDetail(entry) {
+    function openDailyDetail(entry) {
       currentDetailId = entry.id;
       detailDate.innerText = `📅 ${entry.date}`;
-      detailLoc.innerText = `📍 ${entry.location}`;
+      detailMood.innerText = entry.mood;
       detailTitle.innerText = entry.title;
       detailBody.innerText = entry.content;
   
@@ -166,14 +166,14 @@ document.addEventListener('DOMContentLoaded', () => {
   
     if (detailDeleteBtn) {
       detailDeleteBtn.addEventListener('click', () => {
-        if (currentDetailId && confirm('이 여행 기록을 삭제할까요?')) {
+        if (currentDetailId && confirm('이 일기를 삭제할까요?')) {
           const updated = getEntries().filter(item => item.id !== currentDetailId);
           saveEntries(updated);
           modal.style.display = 'none';
-          renderTravelList();
+          renderDailyList();
         }
       });
     }
   
-    renderTravelList();
+    renderDailyList();
   });

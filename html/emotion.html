@@ -3,21 +3,13 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>감정 다이어리 💖</title>
+  <title>감정 다이어리 💭</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Gaegu:wght@400;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../css/style.css">
-  <link rel="stylesheet" href="../css/emotion.css">
   <link rel="stylesheet" href="../css/diary.css">
-  <style>
-    .nav-top-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; }
-    .back-home-btn {
-      text-decoration: none; background-color: #ffffff; color: #ff1493; border: 2px solid #ffccd8;
-      padding: 6px 14px; border-radius: 12px; font-weight: 700; font-size: 1.1rem;
-    }
-    .badge { background-color: #ff1493; color: white; padding: 4px 12px; border-radius: 20px; font-weight: bold; font-size: 1.1rem; }
-  </style>
+  <link rel="stylesheet" href="../css/emotion.css">
 </head>
 <body>
   <div class="diary-wrapper">
@@ -27,41 +19,50 @@
       </div>
       <div class="header-text">
         <h1>My Emotion Diary</h1>
-        <p class="subtitle">마음속 솔직한 기분 정리 💖</p>
+        <p class="subtitle">내 솔직한 마음과 감정을 들여다보는 시간 💭</p>
       </div>
     </header>
 
     <main class="diary-content">
       <div class="nav-top-row">
         <a href="home.html" class="back-home-btn">🏠 홈으로</a>
-        <span class="badge">💖 감정</span>
+        <span class="badge">💭 감정</span>
       </div>
 
       <section class="diary-form-card">
         <div class="date-mood-row">
           <div class="input-group">
-            <label for="diary-date">📅 날짜</label>
-            <input type="date" id="diary-date" value="2026-08-29">
+            <label for="emotion-date">📅 날짜</label>
+            <input type="date" id="emotion-date" value="2026-08-31">
           </div>
           <div class="input-group">
-            <label for="diary-mood">🎀 마음 상태</label>
-            <select id="diary-mood">
-              <option>벅차오르게 행복해요 ✨</option>
-              <option>마음이 차분해요 🌸</option>
-              <option>조금 지치고 힘들어요 💧</option>
-              <option>마음이 복잡하고 싱숭생숭해요 💭</option>
+            <label for="emotion-select">💭 지금 나의 감정</label>
+            <select id="emotion-select">
+              <option>💖 두근두근/설렘</option>
+              <option>😊 뿌듯함/행복</option>
+              <option>🥺 울적함/속상함</option>
+              <option>😠 화남/답답함</option>
+              <option>🧘 평온함/차분함</option>
             </select>
           </div>
         </div>
+
         <div class="input-group">
-          <label>오늘 내 마음의 한 줄 요약</label>
-          <input type="text" placeholder="마음속 감정을 한 문장으로 표현해봐요...">
+          <label for="emotion-title">💌 감정 제목</label>
+          <input type="text" id="emotion-title" placeholder="오늘 내 마음에 붙일 제목은?">
         </div>
+
         <div class="input-group">
-          <label>솔직한 감정 털어놓기</label>
-          <textarea rows="7" placeholder="누구에게도 말하지 못한 나만의 솔직한 생각과 감정을 키티에게 털어놓아 보세요 ₍ᐢ.ˬ.ᐢ₎"></textarea>
+          <label for="emotion-reason">🔍 이런 감정이 든 이유</label>
+          <textarea id="emotion-reason" rows="4" placeholder="어떤 일이나 생각 때문에 이런 감정이 들었나요? 자유롭게 털어놓아 보세요."></textarea>
         </div>
-        <button type="button" class="save-btn">감정 기록 담아두기 💌</button>
+
+        <div class="input-group">
+          <label for="emotion-comfort">🎀 나에게 건네는 한마디 (토닥토닥)</label>
+          <textarea id="emotion-comfort" rows="3" placeholder="오늘 하루도 수고한 나 자신에게 따뜻한 위로와 응원을 남겨주세요 ₍ᐢ.ˬ.ᐢ₎"></textarea>
+        </div>
+
+        <button type="button" class="save-btn" id="save-emotion-btn">감정 일기 저장하기 💭</button>
       </section>
     </main>
 
@@ -69,5 +70,7 @@
       <p>© 2026 My Pink Hello Kitty Diary 🎀</p>
     </footer>
   </div>
+
+  <script src="../js/emotion.js"></script>
 </body>
 </html>

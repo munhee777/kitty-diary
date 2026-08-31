@@ -3,12 +3,13 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>일상 다이어리 🧸</title>
+  <title>일상 다이어리 🌸</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Gaegu:wght@400;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../css/style.css">
   <link rel="stylesheet" href="../css/diary.css">
+  <link rel="stylesheet" href="../css/daily.css">
 </head>
 <body>
   <div class="diary-wrapper">
@@ -18,40 +19,62 @@
       </div>
       <div class="header-text">
         <h1>My Daily Diary</h1>
-        <p class="subtitle">소소하고 소중한 매일의 기록 🧸</p>
+        <p class="subtitle">소소하고 행복한 오늘의 이야기 🌸</p>
       </div>
     </header>
 
     <main class="diary-content">
       <div class="nav-top-row">
         <a href="home.html" class="back-home-btn">🏠 홈으로</a>
-        <span class="badge">🧸 일상</span>
+        <span class="badge">🌸 일상</span>
       </div>
 
       <section class="diary-form-card">
         <div class="date-mood-row">
           <div class="input-group">
-            <label for="diary-date">📅 날짜</label>
-            <input type="date" id="diary-date" value="2026-08-29">
+            <label for="daily-date">📅 날짜</label>
+            <input type="date" id="daily-date" value="2026-08-31">
           </div>
           <div class="input-group">
-            <label for="diary-mood">🎀 오늘의 기분</label>
-            <select id="diary-mood">
-              <option>행복해요 💖</option>
-              <option>평온해요 🌸</option>
+            <label for="daily-mood">🎀 오늘의 기분</label>
+            <select id="daily-mood">
+              <option>행복해요 🌸</option>
+              <option>신나요 🥳</option>
+              <option>평온해요 🍵</option>
+              <option>뿌듯해요 ✨</option>
               <option>피곤해요 💤</option>
             </select>
           </div>
         </div>
+
         <div class="input-group">
-          <label>제목</label>
-          <input type="text" placeholder="오늘 하루 일상 이야기...">
+          <label for="daily-title">✏️ 제목</label>
+          <input type="text" id="daily-title" placeholder="오늘 하루를 한 줄로 표현해주세요!">
         </div>
+
+        <!-- 일상 사진 첨부 -->
         <div class="input-group">
-          <label>일기 내용</label>
-          <textarea rows="7" placeholder="오늘 어떤 소소한 일들이 있었나요?"></textarea>
+          <label>📸 오늘의 사진 첨부</label>
+          <input type="file" id="daily-photo-input" class="file-input-hidden" accept="image/*">
+          
+          <div class="photo-upload-container" id="upload-trigger">
+            <span class="upload-icon">📷</span>
+            <span class="upload-text" style="font-weight: bold; color: #ff1493; font-size: 1.15rem;">클릭해서 사진 넣기</span>
+            <span class="upload-hint">오늘 기억하고 싶은 순간을 담아보세요</span>
+          </div>
+
+          <div class="preview-box" id="preview-box">
+            <img src="" alt="일상 사진 미리보기" class="preview-img" id="preview-img">
+            <button type="button" class="remove-photo-btn" id="remove-photo">✕</button>
+          </div>
         </div>
-        <button type="button" class="save-btn" onclick="alert('일상 일기가 저장되었습니다! 💌')">일상 일기 저장하기 💌</button>
+
+        <div class="input-group">
+          <label for="daily-content">📝 오늘의 이야기</label>
+          <textarea id="daily-content" rows="6" placeholder="오늘 있었던 일이나 생각나는 것들을 자유롭게 적어보세요 ₍ᐢ.ˬ.ᐢ₎"></textarea>
+        </div>
+
+        <button type="button" class="save-btn" id="save-daily-btn">일상 일기 저장하기 💌</button>
       </section>
     </main>
 
@@ -59,5 +82,7 @@
       <p>© 2026 My Pink Hello Kitty Diary 🎀</p>
     </footer>
   </div>
+
+  <script src="../js/daily.js"></script>
 </body>
 </html>

@@ -3,53 +3,13 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>일상 일기 보관함 🧸</title>
+  <title>일상 기록 보관함 🌸</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Gaegu:wght@400;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../css/style.css">
   <link rel="stylesheet" href="../css/diary.css">
-  <style>
-    .list-header-row {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 18px;
-    }
-    .list-title { font-size: 1.5rem; color: #ff007f; }
-    .new-write-btn {
-      text-decoration: none;
-      background-color: #ff1493;
-      color: #ffffff;
-      padding: 6px 14px;
-      border-radius: 12px;
-      font-weight: 700;
-      font-size: 1.05rem;
-      box-shadow: 0 3px 8px rgba(255, 20, 147, 0.25);
-    }
-    .diary-cards-container {
-      display: flex;
-      flex-direction: column;
-      gap: 14px;
-    }
-    .entry-card-box {
-      background-color: #ffffff;
-      border-radius: 18px;
-      border: 2px solid #ffd0df;
-      border-left: 6px solid #ff1493;
-      padding: 16px 18px;
-      box-shadow: 0 4px 10px rgba(255, 105, 180, 0.08);
-    }
-    .entry-top {
-      display: flex;
-      justify-content: space-between;
-      font-size: 1.05rem;
-      color: #a86b7c;
-      margin-bottom: 6px;
-    }
-    .entry-title { font-size: 1.35rem; color: #d11271; margin-bottom: 6px; }
-    .entry-body { font-size: 1.15rem; line-height: 1.5; color: #523b42; white-space: pre-wrap; }
-  </style>
+  <link rel="stylesheet" href="../css/daily.css">
 </head>
 <body>
   <div class="diary-wrapper">
@@ -59,39 +19,25 @@
       </div>
       <div class="header-text">
         <h1>Daily Archives</h1>
-        <p class="subtitle">소소하고 소중한 일상 모아보기 🧸</p>
+        <p class="subtitle">소소하고 소중한 매일의 조각들 🌸</p>
       </div>
     </header>
 
     <main class="diary-content">
       <div class="nav-top-row">
         <a href="home.html" class="back-home-btn">🏠 홈으로</a>
-        <span class="badge">🧸 일상</span>
+        <span class="badge">🌸 일상</span>
       </div>
 
       <div class="list-header-row">
-        <h2 class="list-title">내 일상 기록들 💭</h2>
-        <a href="daily.html" class="new-write-btn">✏️ 새 일기 쓰기</a>
+        <h2 class="list-title">내 일상 이야기 📖</h2>
       </div>
 
-      <div class="diary-cards-container">
-        <article class="entry-card-box">
-          <div class="entry-top">
-            <span>📅 2026.08.29</span>
-            <span>기분: 행복해요 💖</span>
-          </div>
-          <h3 class="entry-title">키티 다이어리를 만든 날 🎀</h3>
-          <p class="entry-body">나만의 예쁜 분홍색 다이어리 홈페이지를 완성했다! 매일매일 일기를 쓰고 스케줄도 정리해야지. 앞으로의 하루하루가 기대된다.</p>
-        </article>
+      <!-- 저장된 일기들이 렌더링되는 영역 -->
+      <div class="diary-cards-container" id="daily-cards-container"></div>
 
-        <article class="entry-card-box">
-          <div class="entry-top">
-            <span>📅 2026.08.28</span>
-            <span>기분: 평온해요 🌸</span>
-          </div>
-          <h3 class="entry-title">산책하다가 마주친 고양이</h3>
-          <p class="entry-body">저녁 먹고 동네 공원을 산책하는데 귀여운 치즈 고양이가 다가와서 발목에 몸을 부볐다. 따뜻하고 힐링되는 저녁이었다.</p>
-        </article>
+      <div class="bottom-write-wrap">
+        <a href="daily.html" class="bottom-new-write-btn">🌸 또 다른 오늘 하루 기록하러 가기 💌</a>
       </div>
     </main>
 
@@ -99,5 +45,31 @@
       <p>© 2026 My Pink Hello Kitty Diary 🎀</p>
     </footer>
   </div>
+
+  <!-- 상세 보기 모달 -->
+  <div class="daily-modal-overlay" id="daily-detail-modal">
+    <div class="daily-modal-content">
+      <div class="daily-modal-header">
+        <h3>🌸 일상 일기 펼쳐보기</h3>
+        <button type="button" class="daily-modal-close-btn" id="daily-modal-close-btn">✕</button>
+      </div>
+
+      <div class="daily-detail-meta">
+        <span id="detail-daily-date">📅 2026.08.31</span>
+        <span class="daily-badge-mood" id="detail-daily-mood">기분</span>
+      </div>
+
+      <h2 class="daily-detail-title" id="detail-daily-title">제목</h2>
+
+      <img src="" alt="일상 사진" class="daily-detail-img" id="detail-daily-img">
+      <p class="daily-detail-body" id="detail-daily-body"></p>
+
+      <div class="daily-modal-actions">
+        <button type="button" class="daily-detail-delete-btn" id="detail-daily-delete-btn">일기 삭제 🗑️</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="../js/daily.js"></script>
 </body>
 </html>

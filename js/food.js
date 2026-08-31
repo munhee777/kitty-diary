@@ -37,13 +37,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // 2. 지역별 데이터 저장 및 지도 카운트
   const STORAGE_KEY = 'kitty_korea_food_map';
 
-  const defaultData = [
-    { id: 1, region: 'seoul', name: '런던베이글뮤지엄', address: '안국점' },
-    { id: 2, region: 'seoul', name: '키티 팬케이크', address: '강남역' },
-    { id: 3, region: 'gyeonggi', name: '춘천닭갈비', address: '의왕역' },
-    { id: 4, region: 'gyeongsang', name: '해운대 가야밀면', address: '해운대구' },
-    { id: 5, region: 'jeju', name: '숙성도', address: '애월' }
-  ];
+  const defaultData = [];
 
   function getData() {
     const saved = localStorage.getItem(STORAGE_KEY);

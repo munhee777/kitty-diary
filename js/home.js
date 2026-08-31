@@ -50,16 +50,8 @@ document.addEventListener('DOMContentLoaded', () => {
   function getSchedules() {
     const data = localStorage.getItem(STORAGE_SCHEDULE_KEY);
     if (!data) {
-      const defaultSchedules = {
-        '2026-08-05': [{ id: 1, text: '🍧 빙수 먹기', time: '14:00' }],
-        '2026-08-12': [{ id: 2, text: '🎬 영화 보기', time: '19:30' }],
-        '2026-08-15': [{ id: 3, text: '🇰🇷 광복절', time: '종일' }],
-        '2026-08-21': [{ id: 4, text: '🛍️ 여름 쇼핑', time: '16:00' }],
-        '2026-08-29': [
-          { id: 5, text: '🍓 예쁜 카페 탐방', time: '15:00' },
-          { id: 6, text: '💌 다이어리 쓰기', time: '21:00' }
-        ]
-      };
+      const defaultSchedules = {};
+      
       localStorage.setItem(STORAGE_SCHEDULE_KEY, JSON.stringify(defaultSchedules));
       return defaultSchedules;
     }
@@ -336,4 +328,12 @@ if (importTriggerBtn && importFileInput) {
     };
     reader.readAsText(file);
   });
+  const ALL_STORAGE_KEYS = [
+    'kitty_diary_schedules',       // 캘린더 일정
+    'kitty_korea_food_map',        // 맛집 지도
+    'kitty_travel_diary_entries',  // 여행 일기
+    'kitty_cafe_diary_entries',    // 카페 기록
+    'kitty_daily_diary_entries',   // 일상 일기 (추가)
+    'kitty_emotion_diary_entries'  // 감정 일기 (추가)
+  ];
 }
