@@ -24,26 +24,25 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
 
-    removeBtn.addEventListener('click', (e) => {
-      e.stopPropagation();
-      fileInput.value = '';
-      currentPhotoBase64 = '';
-      previewImg.src = '';
-      previewBox.style.display = 'none';
-      uploadTrigger.style.display = 'flex';
-    });
+    if (removeBtn) {
+      removeBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        fileInput.value = '';
+        currentPhotoBase64 = '';
+        previewImg.src = '';
+        previewBox.style.display = 'none';
+        uploadTrigger.style.display = 'flex';
+      });
+    }
   }
 
   // 2. 지역별 데이터 저장 및 지도 카운트
   const STORAGE_KEY = 'kitty_korea_food_map';
 
-  const defaultData = [];
-
   function getData() {
     const saved = localStorage.getItem(STORAGE_KEY);
     if (!saved) {
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(defaultData));
-      return defaultData;
+      return []; // 기본 예시 데이터 없이 빈 배열 반환
     }
     return JSON.parse(saved);
   }
@@ -72,32 +71,23 @@ document.addEventListener('DOMContentLoaded', () => {
     jeju: '제주'
   };
 
-  // ─── 지하철역/랜드마크/상세위치 스마트 검색어 생성 함수 ───
+  // 지하철역/랜드마크 대응 스마트 검색어 생성
   function generateSmartSearchQuery(name, address) {
     if (!address) return encodeURIComponent(name);
 
     const cleanName = name.trim();
     const cleanAddr = address.trim();
 
-    // 1. 식당명에 이미 해당 지점/위치가 완전히 포함된 경우
     if (cleanName.includes(cleanAddr)) {
       return encodeURIComponent(cleanName);
     }
 
-    // 2. 상세위치가 '의왕역', '강남역', '홍대입구', '삼청동', '안국점'처럼 1~2단어의 짧은 표현인 경우
-    // -> 그대로 식당명 뒤에 붙여줌 (예: '춘천닭갈비 의왕역')
     const addrTokens = cleanAddr.split(' ').filter(token => token.length > 0);
-    
     if (addrTokens.length <= 2) {
       return encodeURIComponent(`${cleanName} ${cleanAddr}`);
     }
 
-    // 3. '서울 종로구 북촌로4길 20 1층'처럼 긴 도로명/지번 주소인 경우
-    // -> '구/동/역/길' 등의 핵심 키워드 1~2개만 추출해 깔끔하게 조합
-    // 예: '서울 종로구 북촌로 4길' -> '종로구' 또는 '북촌'
     let coreLocation = addrTokens[1] || addrTokens[0];
-    
-    // 주소 안에 '역'이나 '동'이 들어간 단어가 있으면 우선 추출
     const stationOrDong = addrTokens.find(t => t.endsWith('역') || t.endsWith('동') || t.endsWith('구'));
     if (stationOrDong) {
       coreLocation = stationOrDong;
@@ -106,6 +96,7 @@ document.addEventListener('DOMContentLoaded', () => {
     return encodeURIComponent(`${cleanName} ${coreLocation}`);
   }
 
+  // 지역 상세 목록 렌더링
   window.showRegionDetails = function(regionKey) {
     const data = getData();
     const filtered = data.filter(item => item.region === regionKey);
@@ -117,10 +108,9 @@ document.addEventListener('DOMContentLoaded', () => {
     listElem.innerHTML = '';
 
     if (filtered.length === 0) {
-      listElem.innerHTML = '<li style="text-align:center; color:#b58d99; padding:10px;">아직 등록된 맛집이 없어요 ₍ᐢ.ˬ.ᐢ₎</li>';
+      listElem.innerHTML = '<li style="text-align:center; color:#b58d99; padding:15px; font-size:1.05rem;">아직 등록된 맛집이 없어요 ₍ᐢ.ˬ.ᐢ₎</li>';
     } else {
       filtered.forEach(item => {
-        // 지하철역/랜드마크 대응 검색어 생성
         const queryTerm = generateSmartSearchQuery(item.name, item.address);
         const naverMapUrl = `https://map.naver.com/p/search/${queryTerm}`;
 
@@ -131,10 +121,24 @@ document.addEventListener('DOMContentLoaded', () => {
             <div class="res-name">✨ ${item.name}</div>
             <div class="res-addr">${item.address || '위치 미입력'}</div>
           </div>
-          <a href="${naverMapUrl}" target="_blank" class="naver-map-btn">
-            🗺️ 네이버지도
-          </a>
+          <div style="display:flex; align-items:center; gap:6px;">
+            <a href="${naverMapUrl}" target="_blank" class="naver-map-btn">
+              🗺️ 네이버지도
+            </a>
+            <button class="delete-btn" style="background:none; border:none; color:#a86b7c; cursor:pointer; font-size:1.1rem; padding:2px;" title="삭제">✕</button>
+          </div>
         `;
+
+        // 삭제 이벤트
+        li.querySelector('.delete-btn').addEventListener('click', () => {
+          if (confirm(`[${item.name}] 맛집을 삭제할까요?`)) {
+            const allData = getData().filter(d => d.id !== item.id);
+            saveData(allData);
+            updateMapCounts();
+            showRegionDetails(regionKey);
+          }
+        });
+
         listElem.appendChild(li);
       });
     }
@@ -174,14 +178,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
       document.getElementById('food-name').value = '';
       document.getElementById('food-address').value = '';
-      document.getElementById('food-review').value = '';
-      fileInput.value = '';
-      previewImg.src = '';
-      previewBox.style.display = 'none';
-      uploadTrigger.style.display = 'flex';
+      if (document.getElementById('food-review')) {
+        document.getElementById('food-review').value = '';
+      }
+      if (fileInput) fileInput.value = '';
+      if (previewImg) previewImg.src = '';
+      if (previewBox) previewBox.style.display = 'none';
+      if (uploadTrigger) uploadTrigger.style.display = 'flex';
 
       alert(`[${name}]이(가) 전국 맛집 지도(${regionNames[region]})에 등록되었습니다! 🗺️✨`);
-      window.showRegionDetails(region);
+      location.href = 'food-list.html';
     });
   }
 
