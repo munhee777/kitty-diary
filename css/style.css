@@ -5,7 +5,7 @@
   font-family: 'Gaegu', cursive, sans-serif;
 }
 
-/* ─── 모든 링크 태그의 기본 파란색 및 밑줄 제거 ─── */
+/* 모든 링크 태그의 기본 파란색 및 밑줄 제거 */
 a {
   text-decoration: none;
   color: inherit;
@@ -18,76 +18,101 @@ body {
   background-position: 0 0, 20px 20px;
   color: #4a3038;
   min-height: 100vh;
-  padding: 30px 15px;
+  padding: 20px 10px; /* 모바일 좌우 여백 최적화 */
   display: flex;
   justify-content: center;
   align-items: flex-start;
+  overflow-x: hidden; /* 가로 스크롤 방지 */
 }
 
 .diary-wrapper {
   width: 100%;
-  max-width: 650px;
+  max-width: 620px; /* 아이패드/PC 적정 너비 */
   background-color: #ffffff;
-  border-radius: 32px;
-  box-shadow: 0 16px 36px rgba(255, 20, 147, 0.22);
-  border: 4px solid #ff1493;
+  border-radius: 28px;
+  box-shadow: 0 12px 30px rgba(255, 20, 147, 0.2);
+  border: 3.5px solid #ff1493;
   overflow: hidden;
+  box-sizing: border-box;
 }
 
 .diary-header {
   background: linear-gradient(135deg, #ff007f 0%, #ff1493 50%, #ff4d94 100%);
-  padding: 25px 20px 20px;
+  padding: 20px 15px 16px;
   text-align: center;
-  border-bottom: 4px solid #d60065;
+  border-bottom: 3.5px solid #d60065;
 }
 
 .kitty-img-container {
   display: flex;
   justify-content: center;
-  margin-bottom: 8px;
+  margin-bottom: 6px;
 }
 
 .kitty-writing-img {
-  width: 170px;
-  height: 170px;
+  width: 130px;
+  height: 130px;
   object-fit: cover;
   border-radius: 50%;
-  border: 4px solid #ffffff;
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.25);
+  border: 3.5px solid #ffffff;
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.22);
   background-color: #fffaf0;
   animation: float-kitty 3s ease-in-out infinite alternate;
 }
 
 @keyframes float-kitty {
   0% { transform: translateY(0); }
-  100% { transform: translateY(-5px); }
+  100% { transform: translateY(-4px); }
 }
 
 .header-text h1 {
-  font-size: 2.6rem;
+  font-size: 2.2rem;
   color: #ffffff;
-  letter-spacing: 1px;
-  text-shadow: 2px 3px 0px #b80053, 0 4px 10px rgba(0, 0, 0, 0.25);
-  margin-top: 6px;
+  letter-spacing: 0.5px;
+  text-shadow: 2px 2px 0px #b80053, 0 3px 8px rgba(0, 0, 0, 0.2);
+  margin-top: 4px;
 }
 
 .subtitle {
-  font-size: 1.3rem;
+  font-size: 1.15rem;
   color: #ffe6f0;
-  margin-top: 4px;
-  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.25);
+  margin-top: 3px;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
 }
 
 .diary-content {
-  padding: 28px 24px;
+  padding: 20px 16px; /* 스마트폰에서도 여백이 넉넉하도록 축소 */
   background-color: #fffafd;
+  box-sizing: border-box;
+  width: 100%;
 }
 
 .diary-footer {
   text-align: center;
-  padding: 16px;
-  font-size: 1rem;
+  padding: 14px;
+  font-size: 0.95rem;
   color: #b38895;
   background-color: #fff0f5;
   border-top: 1px solid #ffdee7;
+}
+
+/* 모바일 전용 미세조정 */
+@media (max-width: 480px) {
+  body {
+    padding: 10px 6px;
+  }
+  .diary-wrapper {
+    border-radius: 20px;
+    border-width: 3px;
+  }
+  .kitty-writing-img {
+    width: 110px;
+    height: 110px;
+  }
+  .header-text h1 {
+    font-size: 1.9rem;
+  }
+  .diary-content {
+    padding: 16px 12px;
+  }
 }
